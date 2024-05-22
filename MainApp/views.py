@@ -22,6 +22,7 @@ def home(request):
     text = f"""
     <h1>"Изучаем django"</h1>
     <strong>Автор</strong>: <i>{author["fio"]}</i>
+    <a href='/items/'>Список товаров</a>
     """
     return HttpResponse(text)
 
@@ -41,6 +42,7 @@ def item_page(request, item_id):
         if item['id'] == item_id:
             text = f"""<h2>{item['name']}</h2>
             количество: {item['quantity']}
+            <a href='/items/'>Назад</a>
             """
             return HttpResponse(text)
 
@@ -52,6 +54,6 @@ def items_list(request):
     <ul>
     """
     for item in items:
-        text += f"<li>{item['name']}</li>"
+        text += f"<li><a href='/item/{item['id']}'>{item['name']}</a></li>"
     text += '</ul>'
     return HttpResponse(text)
