@@ -28,24 +28,19 @@ def home(request):
 
 
 def about(request):
-    text = f"""
-    Имя: <b>{author["name"]}</b><br>
-    Фамилия: <b>{author["surname"]}</b><br>
-    телефон: <b>{author["phone"]}</b><br>
-    email: <b>{author["mail"]}</b><br>
-    """
-    return HttpResponse(text)
+    context = {
+        'author': author
+    }
+    return render(request, 'about.html', context)
 
 
 def item_page(request, item_id):
     for item in items:
         if item['id'] == item_id:
-            text = f"""<h2>{item['name']}</h2>
-            количество: {item['quantity']}
-            <a href='/items/'>Назад</a>
-            """
-            return HttpResponse(text)
-
+            context = {
+                'item': item
+            }
+            return render(request, 'item-page.html', context)
     return HttpResponseNotFound(f'Товар с id={item_id} не найден')
 
 
