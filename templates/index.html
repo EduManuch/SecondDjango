@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .main-header{
+            color: blue;
+        }
+    </style>
 </head>
 <body>
     {% include 'menu.html' %}
-    <h1>"Изучаем django"</h1>
-    <strong>Автор</strong>: <i>{{ fio }}</i>
+    <h1 class="main-header">"Изучаем django"</h1>
+    <strong style="color: red">Автор</strong>: <i>{{ fio }}</i>
     <a href='/items/'>Список товаров</a>
 </body>
 </html>
