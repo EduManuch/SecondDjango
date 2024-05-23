@@ -19,12 +19,12 @@ items = [
 
 
 def home(request):
-    text = f"""
-    <h1>"Изучаем django"</h1>
-    <strong>Автор</strong>: <i>{author["fio"]}</i>
-    <a href='/items/'>Список товаров</a>
-    """
-    return HttpResponse(text)
+    context = {
+        'name': author['name'],
+        'surname': author['surname'],
+        'fio': author['fio']
+    }
+    return render(request, 'index.html', context)
 
 
 def about(request):
@@ -50,10 +50,7 @@ def item_page(request, item_id):
 
 
 def items_list(request):
-    text = """<h2>Список товаров</h2>
-    <ul>
-    """
-    for item in items:
-        text += f"<li><a href='/item/{item['id']}'>{item['name']}</a></li>"
-    text += '</ul>'
-    return HttpResponse(text)
+    context = {
+        'items': items
+    }
+    return render(request, 'item-list.html', context)
